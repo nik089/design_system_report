@@ -1,0 +1,9 @@
+# Python files
+*.py
+__pycache__/
+*.pyc
+*.pyo
+
+# Text/Log files
+*.txt
+
