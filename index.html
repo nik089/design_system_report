@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System Audit Report</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-primary: #0b0f19;
+            --bg-secondary: #111827;
+            --bg-card: #1f2937;
+            --bg-hover: #374151;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --border-color: #1f2937;
+            --border-light: #374151;
+            --accent-blue: #3b82f6;
+            --accent-blue-hover: #2563eb;
+            --accent-cyan: #06b6d4;
+            --accent-indigo: #6366f1;
+            
+            --success-bg: rgba(16, 185, 129, 0.15);
+            --success-text: #10b981;
+            --success-border: rgba(16, 185, 129, 0.3);
+            
+            --danger-bg: rgba(239, 68, 68, 0.12);
+            --danger-text: #ef4444;
+            --danger-border: rgba(239, 68, 68, 0.25);
+            
+            --warning-bg: rgba(245, 158, 11, 0.15);
+            --warning-text: #f59e0b;
+            --warning-border: rgba(245, 158, 11, 0.3);
+
+            --neutral-bg: rgba(107, 114, 128, 0.15);
+            --neutral-text: #9ca3af;
+            --neutral-border: rgba(107, 114, 128, 0.3);
+
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+            --glass-bg: rgba(17, 24, 39, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --transition-speed: 0.2s;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #f1f5f9;
+            --bg-hover: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border-color: #e2e8f0;
+            --border-light: #cbd5e1;
+            
+            --success-bg: #d1fae5;
+            --success-text: #059669;
+            --success-border: #a7f3d0;
+            
+            --danger-bg: #fee2e2;
+            --danger-text: #dc2626;
+            --danger-border: #fca5a5;
+
+            --warning-bg: #fef3c7;
+            --warning-text: #d97706;
+            --warning-border: #fde68a;
+
+            --neutral-bg: #f1f5f9;
+            --neutral-text: #64748b;
+            --neutral-border: #cbd5e1;
+
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: #ffffff;
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            background: linear-gradient(135deg, #ffffff 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="light"] .header h1 {
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 0.2rem;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border-light);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: all var(--transition-speed);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: var(--bg-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.95;
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Stats Bar */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            transition: transform var(--transition-speed);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-blue);
+        }
+
+        .stat-card.stat-success::before { background: var(--success-text); }
+        .stat-card.stat-warning::before { background: var(--warning-text); }
+        .stat-card.stat-purple::before { background: #8b5cf6; }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-icon {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+        }
+
+        .stat-value {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .stat-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Controls Section */
+        .controls-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1 1 300px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.65rem 1rem 0.65rem 2.6rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color var(--transition-speed);
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .filters-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .filter-select {
+            padding: 0.65rem 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 0.88rem;
+            outline: none;
+            cursor: pointer;
+            transition: border-color var(--transition-speed);
+        }
+
+        .filter-select:focus {
+            border-color: var(--accent-blue);
+        }
+
+        /* Table Card */
+        .table-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            max-height: 70vh;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: var(--bg-card);
+        }
+
+        th {
+            padding: 1rem 1.25rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--border-color);
+            white-space: nowrap;
+            user-select: none;
+            cursor: pointer;
+            transition: color var(--transition-speed);
+        }
+
+        th:hover {
+            color: var(--accent-blue);
+        }
+
+        th i.sort-icon {
+            margin-left: 0.35rem;
+            font-size: 0.75rem;
+            opacity: 0.5;
+        }
+
+        th.active-sort {
+            color: var(--accent-blue);
+        }
+
+        th.active-sort i.sort-icon {
+            opacity: 1;
+        }
+
+        tbody tr {
+            transition: background-color var(--transition-speed);
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.015);
+        }
+
+        tbody tr:hover {
+            background-color: var(--bg-hover);
+        }
+
+        td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+            color: var(--text-primary);
+        }
+
+        /* Specific Cell Styles */
+        .website-cell {
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            min-width: 200px;
+        }
+
+        .website-url {
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-family: 'JetBrains Mono', monospace;
+            word-break: break-all;
+        }
+
+        .website-url:hover {
+            text-decoration: underline;
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            max-width: 280px;
+        }
+
+        .tag-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            line-height: 1.2;
+        }
+
+        .tag-pill.framework {
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            border-color: rgba(59, 130, 246, 0.25);
+        }
+
+        .tag-pill.library {
+            background: rgba(139, 92, 246, 0.1);
+            color: #c084fc;
+            border-color: rgba(139, 92, 246, 0.25);
+        }
+
+        .tag-pill.ux4g-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border-color: rgba(16, 185, 129, 0.35);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .tag-pill.no-ds {
+            background: rgba(107, 114, 128, 0.12);
+            color: #9ca3af;
+            border-color: rgba(107, 114, 128, 0.25);
+            font-style: italic;
+        }
+
+        [data-theme="light"] .tag-pill.framework {
+            background: #eff6ff;
+            color: #2563eb;
+            border-color: #bfdbfe;
+        }
+
+        [data-theme="light"] .tag-pill.library {
+            background: #f5f3ff;
+            color: #7c3aed;
+            border-color: #ddd6fe;
+        }
+
+        [data-theme="light"] .tag-pill.ux4g-badge {
+            background: #d1fae5;
+            color: #059669;
+            border-color: #a7f3d0;
+        }
+
+        [data-theme="light"] .tag-pill.no-ds {
+            background: #f1f5f9;
+            color: #94a3b8;
+            border-color: #cbd5e1;
+        }
+
+        /* Status Pills */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .status-pill.yes {
+            background: var(--success-bg);
+            color: var(--success-text);
+            border: 1px solid var(--success-border);
+        }
+
+        .status-pill.no {
+            background: var(--danger-bg);
+            color: var(--danger-text);
+            border: 1px solid var(--danger-border);
+        }
+
+        /* Confidence Badges */
+        .confidence-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.3rem 0.65rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .confidence-badge.high {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .confidence-badge.medium {
+            background: var(--warning-bg);
+            color: var(--warning-text);
+            border: 1px solid var(--warning-border);
+        }
+
+        .confidence-badge.low {
+            background: var(--danger-bg);
+            color: var(--danger-text);
+            border: 1px solid var(--danger-border);
+        }
+
+        .confidence-badge.na {
+            background: var(--neutral-bg);
+            color: var(--neutral-text);
+            border: 1px solid var(--neutral-border);
+        }
+
+        /* Evidence Button & View */
+        .evidence-btn {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .evidence-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            border-color: var(--accent-blue);
+        }
+
+        /* Footer Info */
+        .table-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        /* Modal styling */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-speed);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 750px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform var(--transition-speed);
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.2rem;
+            transition: color var(--transition-speed);
+        }
+
+        .modal-close:hover {
+            color: var(--danger-text);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-word;
+            background: var(--bg-primary);
+            margin: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+
+        /* Empty state */
+        .empty-state {
+            padding: 3rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .controls-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-title">
+            <div class="header-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div>
+                <h1>Design System Audit Report</h1>
+                <p>Comprehensive Web Framework & UX4G Adoption Analysis</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="btn" id="themeToggleBtn">
+                <i class="fa-solid fa-moon"></i> Toggle Theme
+            </button>
+            <button class="btn btn-primary" id="exportCsvBtn">
+                <i class="fa-solid fa-file-csv"></i> Export CSV
+            </button>
+        </div>
+    </header>
+
+    <!-- Stats Summary Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-header">
+                <span class="stat-title">Total Portals Analyzed</span>
+                <i class="fa-solid fa-globe stat-icon"></i>
+            </div>
+            <div class="stat-value" id="statTotalCount">0</div>
+            <div class="stat-subtitle">Scanned Government Websites</div>
+        </div>
+
+        <div class="stat-card stat-success">
+            <div class="stat-header">
+                <span class="stat-title">UX4G Design System</span>
+                <i class="fa-solid fa-circle-check stat-icon" style="color: var(--success-text)"></i>
+            </div>
+            <div class="stat-value" id="statUx4gDsCount">0 <span style="font-size: 1rem; font-weight: 600; opacity: 0.8" id="statUx4gDsPercent">(0%)</span></div>
+            <div class="stat-subtitle">Adopting UX4G DS</div>
+        </div>
+
+        <div class="stat-card stat-warning">
+            <div class="stat-header">
+                <span class="stat-title">Accessibility Widget</span>
+                <i class="fa-solid fa-universal-access stat-icon" style="color: var(--warning-text)"></i>
+            </div>
+            <div class="stat-value" id="statUx4gAccCount">0 <span style="font-size: 1rem; font-weight: 600; opacity: 0.8" id="statUx4gAccPercent">(0%)</span></div>
+            <div class="stat-subtitle">Using Accessibility CDN</div>
+        </div>
+
+        <div class="stat-card stat-purple">
+            <div class="stat-header">
+                <span class="stat-title">Most Common Framework</span>
+                <i class="fa-solid fa-code-branch stat-icon" style="color: #8b5cf6"></i>
+            </div>
+            <div class="stat-value" style="font-size: 1.5rem" id="statTopFramework">Bootstrap</div>
+            <div class="stat-subtitle" id="statTopFrameworkCount">Detected across portals</div>
+        </div>
+    </div>
+
+    <!-- Controls / Filters -->
+    <div class="controls-card">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search by portal name, URL, CSS framework, library...">
+        </div>
+        <div class="filters-group">
+            <select class="filter-select" id="filterUx4gDs">
+                <option value="all">UX4G DS: All</option>
+                <option value="Yes">UX4G DS: Yes</option>
+                <option value="No">UX4G DS: No</option>
+            </select>
+
+            <select class="filter-select" id="filterUx4gAcc">
+                <option value="all">UX4G Accessibility: All</option>
+                <option value="Yes">Accessibility: Yes</option>
+                <option value="No">Accessibility: No</option>
+            </select>
+
+            <select class="filter-select" id="filterConfidence">
+                <option value="all">Confidence: All</option>
+                <option value="High">High Confidence</option>
+                <option value="Medium">Medium Confidence</option>
+                <option value="Low">Low Confidence</option>
+                <option value="N/A">N/A Confidence</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="table-card">
+        <div class="table-wrapper">
+            <table id="reportTable">
+                <thead>
+                    <tr>
+                        <th data-sort="Website">Website / Portal <i class="fa-solid fa-sort sort-icon"></i></th>
+                        <th data-sort="CSS Framework(s)">CSS Framework(s) <i class="fa-solid fa-sort sort-icon"></i></th>
+                        <th data-sort="Design System/UI Library Used">UI Library / Design System <i class="fa-solid fa-sort sort-icon"></i></th>
+                        <th data-sort="UX4G Design System (Yes/No)" style="text-align: center;">UX4G DS <i class="fa-solid fa-sort sort-icon"></i></th>
+                        <th data-sort="UX4G Accessibility CDN (Yes/No)" style="text-align: center;">UX4G Accessibility <i class="fa-solid fa-sort sort-icon"></i></th>
+                        <th data-sort="Confidence" style="text-align: center;">Confidence <i class="fa-solid fa-sort sort-icon"></i></th>
+                        <th style="text-align: center;">Evidence</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Populated dynamically -->
+                </tbody>
+            </table>
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <i class="fa-solid fa-filter-circle-xmark"></i>
+                <h3>No Matching Records</h3>
+                <p>Try adjusting your search criteria or filters</p>
+            </div>
+        </div>
+        <div class="table-footer">
+            <span id="recordCountInfo">Showing 0 of 0 portals</span>
+            <span>Generated from Design System Report Audit Data</span>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Evidence Details -->
+<div class="modal-overlay" id="evidenceModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <div class="modal-title" id="modalPortalTitle">Evidence Breakdown</div>
+            <button class="modal-close" id="modalCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body" id="modalEvidenceContent">
+            <!-- Content inserted via JS -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // Embedded Audit Data
+    const reportData = [
+  {
+    "Website": "DigiLocker",
+    "URL": "https://www.digilocker.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap, Tailwind CSS",
+    "Design System(s) Used": "UX4G Design System, React Bootstrap",
+    "UX4G Design System (Yes/No)": "Yes",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G DS]: CDN/File: https://cdn.digilocker.gov.in/ux4g/UX4G@1.0.2/css/ux4g-min.css | [UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/entity-locker/accessibility-widget.js | [Frameworks]: Bootstrap (CDN/File: bootstrap.min.js ; Classes: [col-xl-3, col-xl-4, col-lg-3, col-md-6]; Meta: Bootstrap); Tailwind CSS (Classes: [flex-wrap, flex-row, shadow-sm]) | [UI Libraries]: UX4G Design System (CDN/File: https://cdn.digilocker.gov.in/ux4g/UX4G@1.0.2/css/ux4g-min.css); React Bootstrap (Classes: [btn-primary, btn-outline-primary, col-md-6, col-md-2])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "Entity Locker",
+    "URL": "https://entity.digilocker.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap, Tailwind CSS",
+    "Design System(s) Used": "UX4G Design System, React Bootstrap",
+    "UX4G Design System (Yes/No)": "Yes",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G DS]: CDN/File: https://cdn.digilocker.gov.in/ux4g/UX4G@1.0.2/css/ux4g-min.css | [UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/entity-locker/accessibility-widget.js | [Frameworks]: Bootstrap (Attr: data-bs-dismiss; Classes: [col-xl-3, col-xl-4, col-lg-3, col-md-6]); Tailwind CSS (Classes: [flex-wrap, flex-row, shadow-sm]) | [UI Libraries]: UX4G Design System (CDN/File: https://cdn.digilocker.gov.in/ux4g/UX4G@1.0.2/css/ux4g-min.css); React Bootstrap (Classes: [btn-primary, btn-outline-primary, col-md-6, col-md-2])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "API Setu",
+    "URL": "https://apisetu.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Tailwind CSS",
+    "Design System(s) Used": "UX4G Design System",
+    "UX4G Design System (Yes/No)": "Yes",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[UX4G DS]: Classes: [ux4g-btn, ux4g-btn-outline-primary, ux4g-btn-primary, ux4g-btn-sm, ux4g-btn-text-neutral, ux4g-btn-text-primary], CSS Var: --ux4g-* | [Frameworks]: Tailwind CSS (Classes: [flex-col, flex-row, lg:flex-row, md:flex-row]) | [UI Libraries]: UX4G Design System (Classes: [ux4g-btn, ux4g-btn-outline-primary, ux4g-btn-primary, ux4g-btn-sm, ux4g-btn-text-neutral, ux4g-btn-text-primary], CSS Var: --ux4g-*)",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "OpenForge",
+    "URL": "https://openforge.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/tools/accessibility-widget.js",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "UMANG",
+    "URL": "https://web.umang.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/tools/accessibility-widget.js",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "myScheme",
+    "URL": "https://www.myscheme.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap, Tailwind CSS",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (Classes: [container, d-block]); Tailwind CSS (Classes: [flex-col, flex-1, flex-row, lg:flex-row])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "Meri Pehchaan",
+    "URL": "https://meripehchaan.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Classes: [col-xl-4, col-lg-3, col-lg-5, col-sm-6]; Meta: Bootstrap) | [UI Libraries]: React Bootstrap (Classes: [col-md-4, col-lg-3, col-lg-5, col-lg-9])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "UPSC",
+    "URL": "https://www.upsc.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/tools/accessibility-widget.js | [Frameworks]: Bootstrap (Classes: [col-sm-12, col-xs-8, col-md-12, col-xs-4]; Meta: Bootstrap) | [UI Libraries]: React Bootstrap (Classes: [btn-primary, col-md-12, col-md-8, col-md-4])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "PAIMANA",
+    "URL": "https://paimana-proj.mospi.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Classes: [col-md-6, col-sm-12, col-md-12, col-lg-4]; Meta: Bootstrap) | [UI Libraries]: React Bootstrap (Classes: [col-md-6, col-md-12, col-lg-4, container-fluid])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "NIRI",
+    "URL": "N/A",
+    "Status": "VERIFY / NO URL CONFIRMED",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "N/A",
+    "Evidence": "Portal skipped: No official URL (VERIFY / NO URL CONFIRMED)",
+    "Notes": "VERIFY / NO URL CONFIRMED"
+  },
+  {
+    "Website": "NSWS",
+    "URL": "https://www.nsws.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap, Foundation",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (Classes: [navbar, modal]); Foundation (Attr: data-off-canvas; Classes: [button-group])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "LBSNAA",
+    "URL": "https://www.lbsnaa.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap, Tailwind CSS",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (CDN/File: bootstrap.min.js; Classes: [col-lg-3, col-md-6, col-md-2, col-md-12]; Meta: Bootstrap); Tailwind CSS (Classes: [shadow-sm, shadow-none]) | [UI Libraries]: React Bootstrap (Classes: [btn-primary, col-md-6, col-md-2, col-md-12])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "DPE",
+    "URL": "https://www.dpe.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Medium",
+    "Evidence": "[Frameworks]: Bootstrap (Meta: Bootstrap)",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "ITPO – Bharat Mandapam",
+    "URL": "https://www.itpo.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Medium",
+    "Evidence": "[Frameworks]: Bootstrap (Meta: Bootstrap)",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "IPA",
+    "URL": "https://www.ipa.org.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Classes: [col-lg-3, col-md-6, col-sm-12, col-lg-5]; Meta: Bootstrap) | [UI Libraries]: React Bootstrap (Classes: [col-md-6, col-md-12, col-md-8, col-md-4])",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "BRICS (India 2026 Digital Platform)",
+    "URL": "https://www.brics2026.gov.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "Foundation",
+    "Design System(s) Used": "UX4G Design System",
+    "UX4G Design System (Yes/No)": "Yes",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G DS]: CDN/File: https://cdn.ux4g.gov.in/UX4G@2.0.8/css/ux4g-min.css?ver=2.0.8 | [UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/tools/accessibility-widget.js | [Frameworks]: Foundation (Attr: data-accordion; Classes: [top-bar]) | [UI Libraries]: UX4G Design System (CDN/File: https://cdn.ux4g.gov.in/UX4G@2.0.8/css/ux4g-min.css?ver=2.0.8)",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "Portal Consolidation – Social Justice",
+    "URL": "https://www.dosje.gov.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "UX4G Design System, Syncfusion, React Bootstrap",
+    "UX4G Design System (Yes/No)": "Yes",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G DS]: CDN/File: https://www.dosje.gov.in/wp-content/themes/mosje/assets/css/ux4g-min.css?ver=e4db21301d | [UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/tools/accessibility-widget.js | [Frameworks]: Bootstrap (Attr: data-bs-target; Classes: [col-sm-5, col-md-6, col-sm-4, col-md-4]; Meta: Bootstrap) | [UI Libraries]: UX4G Design System (CDN/File: https://www.dosje.gov.in/wp-content/themes/mosje/assets/css/ux4g-min.css?ver=e4db21301d); Syncfusion (Classes: [e-grid-align-center]); React Bootstrap (Classes: [btn-primary, btn-outline-primary, col-md-6, col-md-4])",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "IEPFA",
+    "URL": "https://www.iepf.gov.in/content/iepfa/global/master/Home/Home.html",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Low",
+    "Evidence": "HTML analysed (335 bytes), 0 CSS files, 0 JS scripts — no standard framework signatures matched.",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "Gaming Portal (Online Gaming Authority)",
+    "URL": "https://www.meity.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Medium",
+    "Evidence": "[Frameworks]: Bootstrap (Meta: Bootstrap)",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "MOTA / Survey App",
+    "URL": "https://tribal.gov.in/",
+    "Status": "ERROR",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "N/A",
+    "Evidence": "Portal skipped or unreachable: Playwright error: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://tribal.gov.in/ Call log: - navigating to \"https://tribal.gov.in/\", waiting until \"commit\"",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "Textile (TSRS)",
+    "URL": "https://txcindia-stats.gov.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Low",
+    "Evidence": "HTML analysed (938 bytes), 2 CSS files, 1 JS scripts — no standard framework signatures matched.",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "NDMA",
+    "URL": "https://ndma.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap, Foundation",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (Attr: data-bs-ride; Classes: [col-sm-12, col-lg-2, col-lg-12, col-md-12]); Foundation (Attr: data-off-canvas; Classes: [top-bar]) | [UI Libraries]: React Bootstrap (Classes: [col-md-12, col-md-4, col-lg-2, col-lg-12])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "UPMS",
+    "URL": "https://upms.meity.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Material UI (MUI)",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Medium",
+    "Evidence": "[UI Libraries]: Material UI (MUI) (Classes: [MuiButton-root, MuiCard-root, MuiTypography-root, MuiBox-root])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "HLC Sameeksha",
+    "URL": "https://hlc-sameeksha.niti.gov.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Medium",
+    "Evidence": "[Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Meta: Bootstrap)",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "NGO Darpan",
+    "URL": "https://ngodarpan.gov.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Low",
+    "Evidence": "HTML analysed (10,511 bytes), 3 CSS files, 3 JS scripts — no standard framework signatures matched.",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "Niti for States – NFS",
+    "URL": "https://www.nitiforstates.gov.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "Bootstrap, Tailwind CSS",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (CDN/File: bootstrap.bundle.min.js; Classes: [col-md-6, col-md-2, col-lg-5, col-md-3]; Meta: Bootstrap); Tailwind CSS (Classes: [flex-wrap, shadow-none]) | [UI Libraries]: React Bootstrap (Classes: [btn-primary, col-md-6, col-md-2, col-md-3])",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "Skill India Digital Hub",
+    "URL": "https://www.skillindiadigital.gov.in/",
+    "Status": "VERIFY / REDIRECT CHECK",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Low",
+    "Evidence": "HTML analysed (82,788 bytes), 4 CSS files, 7 JS scripts — no standard framework signatures matched.",
+    "Notes": "VERIFY / REDIRECT CHECK"
+  },
+  {
+    "Website": "IFSCA",
+    "URL": "https://ifsca.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap, Milligram",
+    "Design System(s) Used": "UX4G Design System, React Bootstrap",
+    "UX4G Design System (Yes/No)": "Yes",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[UX4G DS]: Classes: [ux4g-icon] | [Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Classes: [col-xl-4, col-lg-3, col-md-6, col-lg-5]; Meta: Bootstrap); Milligram (Classes: [float-right, float-left]) | [UI Libraries]: UX4G Design System (Classes: [ux4g-icon]); React Bootstrap (Classes: [btn-primary, col-md-6, col-md-12, col-md-8])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "PARIVESH 3.0",
+    "URL": "https://parivesh.nic.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Medium",
+    "Evidence": "[Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Meta: Bootstrap)",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "RR Generator – DoPT",
+    "URL": "https://rrgen.rframs.dopt.gov.in/",
+    "Status": "ERROR",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "N/A",
+    "Evidence": "Portal skipped or unreachable: Playwright error: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://rrgen.rframs.dopt.gov.in/ Call log: - navigating to \"https://rrgen.rframs.dopt.gov.in/\", waiting un",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "GovAI Platform",
+    "URL": "https://indiaai.gov.in/",
+    "Status": "LIVE / CRAWLER BLOCKED",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Low",
+    "Evidence": "HTML analysed (1,669,033 bytes), 0 CSS files, 7 JS scripts — no standard framework signatures matched.",
+    "Notes": "LIVE / CRAWLER BLOCKED"
+  },
+  {
+    "Website": "Gov.in Appstore",
+    "URL": "https://apps.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "UX4G Design System",
+    "UX4G Design System (Yes/No)": "Yes",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G DS]: Meta: : default-src 'self'; script-src 'self' https://translate.go | [UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/tools/accessibility-widget.js | [UI Libraries]: UX4G Design System (Meta: : default-src 'self'; script-src 'self' https://translate.go)",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "UX4G",
+    "URL": "https://www.ux4g.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Tailwind CSS",
+    "Design System(s) Used": "UX4G Design System",
+    "UX4G Design System (Yes/No)": "Yes",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G DS]: Classes: [ux4g-absolute, ux4g-ai-center, ux4g-bento-container, ux4g-bento-section, ux4g-bg-brand-subtle, ux4g-bg-glass-20], CSS Var: --ux4g-*, Meta: keywords:UX4G, design system, government, India, React, Angular, Flutter, Web Co, Meta: author:UX4G Design System 3.0 Team, Meta: og:title:UX4G Design System 3.0, Meta: og:url:https://ux4g.gov.in/, Meta: og:site_name:UX4G Design System 3.0, Meta: og:image:https://ux4g.gov.in/assets/og-image.png, Meta: og:image:alt:UX4G Design System 3.0 â Government of India, Meta: twitter:title:UX4G Design System 3.0, Meta: twitter:image:https://ux4g.gov.in/assets/og-image.png, Meta: :default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.ux4g.go | [UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/accessibility-v3.31/accessibility-widget.js | [Frameworks]: Tailwind CSS (Classes: [sm:text-xs, focus:text-sm, sm:shadow-none, focus:shadow-lg]) | [UI Libraries]: UX4G Design System (Classes: [ux4g-absolute, ux4g-ai-center, ux4g-bento-container, ux4g-bento-section, ux4g-bg-brand-subtle, ux4g-bg-glass-20], CSS Var: --ux4g-*, Meta: keywords:UX4G, design system, government, India, React, Angular, Flutter, Web Co, Meta: author:UX4G Design System 3.0 Team, Meta: og:title:UX4G Design System 3.0, Meta: og:url:https://ux4g.gov.in/, Meta: og:site_name:UX4G Design System 3.0, Meta: og:image:https://ux4g.gov.in/assets/og-image.png, Meta: og:image:alt:UX4G Design System 3.0 â Government of India, Meta: twitter:title:UX4G Design System 3.0, Meta: twitter:image:https://ux4g.gov.in/assets/og-image.png, Meta: :default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.ux4g.go)",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "MNRE GHCI",
+    "URL": "https://mnre.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (Classes: [col-md-8, col-sm-5, col-xs-5, col-xs-12]) | [UI Libraries]: React Bootstrap (Classes: [col-md-8, col-md-4, col-lg-4, col-lg-8])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "PM SETU",
+    "URL": "https://pm-setu.skillindiadigital.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Low",
+    "Evidence": "HTML analysed (15,119 bytes), 8 CSS files, 1 JS scripts — no standard framework signatures matched.",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "NCSTGram",
+    "URL": "https://ncstgrams.gov.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Classes: [col-md-6, col-md-2, col-sm-12, col-md-12]; Meta: Bootstrap) | [UI Libraries]: React Bootstrap (Classes: [col-md-6, col-md-2, col-md-12, col-md-4])",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "IN-SPACe",
+    "URL": "https://www.inspace.gov.in/",
+    "Status": "LIVE → redirects to /inspace",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Medium",
+    "Evidence": "[Frameworks]: Bootstrap (Meta: Bootstrap)",
+    "Notes": "LIVE → redirects to /inspace"
+  },
+  {
+    "Website": "NMC-NMR",
+    "URL": "https://nmr-nmc.abdm.gov.in/nmr/v3",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Low",
+    "Evidence": "HTML analysed (670 bytes), 1 CSS files, 1 JS scripts — no standard framework signatures matched.",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "Delhi Police",
+    "URL": "https://delhipolice.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap, Foundation, Milligram",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Classes: [col-md-6, col-md-2, col-md-12, col-sm-6]; Meta: Bootstrap); Foundation (CDN/File: foundation.min.css); Milligram (Classes: [float-right, float-left]) | [UI Libraries]: React Bootstrap (Classes: [btn-primary, col-md-6, col-md-2, col-md-12])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "Election Commission of India – IIDEM",
+    "URL": "https://iidem.igotkarmayogi.gov.in/",
+    "Status": "ERROR",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "N/A",
+    "Evidence": "Portal skipped or unreachable: Playwright error: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://iidem.igotkarmayogi.gov.in/ Call log: - navigating to \"https://iidem.igotkarmayogi.gov.in/\", waitin",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "Digital Sports Ecosystem (SAI)",
+    "URL": "https://sportsauthorityofindia.gov.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Classes: [col-md-6, col-sm-12, col-lg-5, col-md-12]; Meta: Bootstrap) | [UI Libraries]: React Bootstrap (Classes: [col-md-6, col-md-12, col-md-3, col-lg-5])",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "ABC / NAD",
+    "URL": "https://www.abc.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "UX4G Design System, React Bootstrap",
+    "UX4G Design System (Yes/No)": "Yes",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G DS]: CDN/File: https://cdn-abc.dl6.in/assets/css/ux4g-min.css | [UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/tools/accessibility-widget.js | [Frameworks]: Bootstrap (Attr: data-bs-ride; Classes: [col-md-6, col-md-5, col-md-7, col-md-3]; Meta: Bootstrap) | [UI Libraries]: UX4G Design System (CDN/File: https://cdn-abc.dl6.in/assets/css/ux4g-min.css); React Bootstrap (Classes: [btn-outline-primary, col-md-6, col-md-5, col-md-7])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "DIKSHA",
+    "URL": "https://diksha.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "UX4G Design System, Ant Design, NG-ZORRO, React Bootstrap",
+    "UX4G Design System (Yes/No)": "Yes",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[UX4G DS]: Classes: [ux4g-button, ux4g-copy, ux4g-copyright, ux4g-icon] | [Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Classes: [col-md-2, col-sm-12, col-md-12, col-sm-6]; Meta: Bootstrap) | [UI Libraries]: UX4G Design System (Classes: [ux4g-button, ux4g-copy, ux4g-copyright, ux4g-icon]); Ant Design (Classes: [ant-btn]); NG-ZORRO (Classes: [ant-btn]); React Bootstrap (Classes: [btn-primary, col-md-2, col-md-12, col-md-8])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "Poshan Tracker",
+    "URL": "https://www.poshantracker.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/tools/accessibility-widget.js | [Frameworks]: Bootstrap (CDN/File: bootstrap.bundle.min.js; Meta: Bootstrap)",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "Poshan",
+    "URL": "https://ptbeta.dl6.in/",
+    "Status": "UNKNOWN",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/tools/accessibility-widget.js | [Frameworks]: Bootstrap (CDN/File: bootstrap.bundle.min.js; Meta: Bootstrap)",
+    "Notes": ""
+  },
+  {
+    "Website": "Kisan Sarathi 2.0",
+    "URL": "https://kisansarathi.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/accessibility-beta-v1.15/accessibility-widget.js | [Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Classes: [col-md-6, col-md-2, col-lg-5, col-sm-6]; Meta: Bootstrap) | [UI Libraries]: React Bootstrap (Classes: [col-md-6, col-md-2, col-md-5, col-md-4])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "MANAS",
+    "URL": "https://www.manas.gov.in/",
+    "Status": "ERROR",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "N/A",
+    "Evidence": "Portal skipped or unreachable: Playwright error: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://www.manas.gov.in/ Call log: - navigating to \"https://www.manas.gov.in/\", waiting until \"commit\"",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "eSaras",
+    "URL": "https://www.esaras.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "Bulma",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/accessibility-beta-v1.15/accessibility-widget.js | [Frameworks]: Bulma (Classes: [columns, column])",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "Indiahandmade",
+    "URL": "https://www.indiahandmade.com/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bulma, Spectre.css",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/accessibility-beta-v1.15/accessibility-widget.js | [Frameworks]: Bulma (Classes: [columns, column]); Spectre.css (Classes: [columns, divider])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "My Bharat",
+    "URL": "https://mybharat.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap, Spectre.css",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Classes: [col-md-8, col-sm-5, col-sm-10, col-md-6]; Meta: Bootstrap); Spectre.css (Classes: [form-group, input-group]) | [UI Libraries]: React Bootstrap (Classes: [btn-outline-primary, col-md-8, col-md-6, col-md-1])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "LoKOS",
+    "URL": "https://lokos.dord.gov.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/accessibility-beta-v1.12/accessibility-widget.js",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "NHAI",
+    "URL": "https://nhai.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Low",
+    "Evidence": "HTML analysed (4,528 bytes), 1 CSS files, 7 JS scripts — no standard framework signatures matched.",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "GSI",
+    "URL": "https://www.gsi.gov.in/home/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Medium",
+    "Evidence": "[Frameworks]: Bootstrap (Meta: Bootstrap)",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "Visvesvaraya PhD Scheme",
+    "URL": "https://phd.dic.gov.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Mantine",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/tools/accessibility-widget.js | [UI Libraries]: Mantine (Classes: [mantine-Text-root])",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "NITI Aayog",
+    "URL": "https://www.niti.gov.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Bootstrap, Foundation",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "High",
+    "Evidence": "[Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Classes: [col-md-12, col-xl-6, container-fluid, container]; Meta: Bootstrap); Foundation (Attr: data-off-canvas) | [UI Libraries]: React Bootstrap (Classes: [col-md-12, container-fluid])",
+    "Notes": "LIVE"
+  },
+  {
+    "Website": "India AI",
+    "URL": "https://indiaai.gov.in/",
+    "Status": "LIVE / CRAWLER BLOCKED",
+    "CSS Framework(s)": "None Detected",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Low",
+    "Evidence": "HTML analysed (1,669,033 bytes), 0 CSS files, 7 JS scripts — no standard framework signatures matched.",
+    "Notes": "LIVE / CRAWLER BLOCKED"
+  },
+  {
+    "Website": "DPDP Digital Office",
+    "URL": "https://www.meity.gov.in/data-protection-framework",
+    "Status": "LIVE / CRAWLER BLOCKED",
+    "CSS Framework(s)": "Bootstrap",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Medium",
+    "Evidence": "[Frameworks]: Bootstrap (Meta: Bootstrap)",
+    "Notes": "LIVE / CRAWLER BLOCKED"
+  },
+  {
+    "Website": "NCW",
+    "URL": "https://www.ncw.gov.in/",
+    "Status": "VERIFY",
+    "CSS Framework(s)": "Bootstrap, Tailwind CSS",
+    "Design System(s) Used": "React Bootstrap",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "Yes",
+    "Confidence": "High",
+    "Evidence": "[UX4G Accessibility CDN]: CDN/File: https://cdn.ux4g.gov.in/accessibility-beta-v1.15/accessibility-widget.js | [Frameworks]: Bootstrap (CDN/File: bootstrap.min.css; Classes: [col-lg-1, col-md-6, col-lg-5, col-md-1]; Meta: Bootstrap); Tailwind CSS (Classes: [flex-wrap, shadow-sm]) | [UI Libraries]: React Bootstrap (Classes: [col-md-6, col-md-1, col-md-3, col-md-12])",
+    "Notes": "VERIFY"
+  },
+  {
+    "Website": "Vandemataram",
+    "URL": "https://www.vandemataram150.in/",
+    "Status": "LIVE",
+    "CSS Framework(s)": "Tailwind CSS",
+    "Design System(s) Used": "Custom / None Detected",
+    "UX4G Design System (Yes/No)": "No",
+    "UX4G Accessibility CDN (Yes/No)": "No",
+    "Confidence": "Medium",
+    "Evidence": "[Frameworks]: Tailwind CSS (Classes: [flex-col, flex-1, sm:flex-col, sm:flex-row])",
+    "Notes": "LIVE"
+  }
+];
+
+    // State Variables
+    let filteredData = [...reportData];
+    let sortColumn = 'Website';
+    let sortDirection = 'asc';
+
+    // DOM Elements
+    const tableBody = document.getElementById('tableBody');
+    const searchInput = document.getElementById('searchInput');
+    const filterUx4gDs = document.getElementById('filterUx4gDs');
+    const filterUx4gAcc = document.getElementById('filterUx4gAcc');
+    const filterConfidence = document.getElementById('filterConfidence');
+    const recordCountInfo = document.getElementById('recordCountInfo');
+    const emptyState = document.getElementById('emptyState');
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const exportCsvBtn = document.getElementById('exportCsvBtn');
+
+    const modalOverlay = document.getElementById('evidenceModal');
+    const modalPortalTitle = document.getElementById('modalPortalTitle');
+    const modalEvidenceContent = document.getElementById('modalEvidenceContent');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+    // Calculate Summary Stats
+    function updateStats() {
+        const total = reportData.length;
+        const ux4gDsCount = reportData.filter(d => d['UX4G Design System (Yes/No)'] === 'Yes').length;
+        const ux4gAccCount = reportData.filter(d => d['UX4G Accessibility CDN (Yes/No)'] === 'Yes').length;
+        
+        // Count frameworks
+        const frameworkCounts = {};
+        reportData.forEach(d => {
+            if (d['CSS Framework(s)'] && d['CSS Framework(s)'] !== 'None Detected') {
+                d['CSS Framework(s)'].split(', ').forEach(f => {
+                    frameworkCounts[f] = (frameworkCounts[f] || 0) + 1;
+                });
+            }
+        });
+
+        let topFramework = 'None';
+        let topCount = 0;
+        for (const [fw, count] of Object.entries(frameworkCounts)) {
+            if (count > topCount) {
+                topCount = count;
+                topFramework = fw;
+            }
+        }
+
+        document.getElementById('statTotalCount').innerText = total;
+        document.getElementById('statUx4gDsCount').childNodes[0].nodeValue = ux4gDsCount + ' ';
+        document.getElementById('statUx4gDsPercent').innerText = `(${((ux4gDsCount/total)*100).toFixed(1)}%)`;
+
+        document.getElementById('statUx4gAccCount').childNodes[0].nodeValue = ux4gAccCount + ' ';
+        document.getElementById('statUx4gAccPercent').innerText = `(${((ux4gAccCount/total)*100).toFixed(1)}%)`;
+
+        document.getElementById('statTopFramework').innerText = topFramework;
+        document.getElementById('statTopFrameworkCount').innerText = `${topCount} of ${total} portals`;
+    }
+
+    // Render Table Rows
+    function renderTable() {
+        tableBody.innerHTML = '';
+
+        if (filteredData.length === 0) {
+            emptyState.style.display = 'block';
+            recordCountInfo.innerText = `Showing 0 of ${reportData.length} portals`;
+            return;
+        }
+
+        emptyState.style.display = 'none';
+        recordCountInfo.innerText = `Showing ${filteredData.length} of ${reportData.length} portals`;
+
+        filteredData.forEach((row, index) => {
+            const tr = document.createElement('tr');
+
+            // Website & URL
+            const websiteTd = document.createElement('td');
+            websiteTd.className = 'website-cell';
+            const urlHtml = row.URL !== 'N/A' 
+                ? `<a href="${row.URL}" target="_blank" class="website-url"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${row.URL}</a>`
+                : `<span style="font-size: 0.8rem; color: var(--text-muted)">N/A</span>`;
+            websiteTd.innerHTML = `<span>${escapeHtml(row.Website)}</span>${urlHtml}`;
+
+            // Frameworks
+            const fwTd = document.createElement('td');
+            if (row['CSS Framework(s)'] && row['CSS Framework(s)'] !== 'None Detected') {
+                const list = row['CSS Framework(s)'].split(', ').map(f => `<span class="tag-pill framework"><i class="fa-solid fa-code" style="font-size:0.65rem; margin-right:0.25rem;"></i>${escapeHtml(f)}</span>`).join('');
+                fwTd.innerHTML = `<div class="badge-list">${list}</div>`;
+            } else {
+                fwTd.innerHTML = `<span style="color: var(--text-muted); font-size: 0.85rem">None Detected</span>`;
+            }
+
+            // Design Systems
+            const dsTd = document.createElement('td');
+            const dsValue = row['Design System(s) Used'] || row['Design System/UI Library Used'] || 'Custom / None Detected';
+            const isUx4gYes = row['UX4G Design System (Yes/No)'] === 'Yes';
+
+            if (isUx4gYes) {
+                // UX4G adopted — show UX4G as a prominent green badge first, then other libraries
+                const others = dsValue.split(', ').filter(l => !l.toLowerCase().includes('ux4g'));
+                const ux4gBadge = `<span class="tag-pill ux4g-badge"><i class="fa-solid fa-star" style="font-size:0.65rem; margin-right:0.25rem;"></i>UX4G</span>`;
+                const otherBadges = others.map(l => `<span class="tag-pill library"><i class="fa-solid fa-cubes" style="font-size:0.65rem; margin-right:0.25rem;"></i>${escapeHtml(l)}</span>`).join('');
+                dsTd.innerHTML = `<div class="badge-list">${ux4gBadge}${otherBadges}</div>`;
+            } else if (dsValue && dsValue !== 'None Detected' && dsValue !== 'Custom / None Detected') {
+                // Not UX4G but uses some other design system
+                const list = dsValue.split(', ').map(l => `<span class="tag-pill library"><i class="fa-solid fa-cubes" style="font-size:0.65rem; margin-right:0.25rem;"></i>${escapeHtml(l)}</span>`).join('');
+                dsTd.innerHTML = `<div class="badge-list">${list}</div>`;
+            } else {
+                // No design system at all
+                dsTd.innerHTML = `<span class="tag-pill no-ds"><i class="fa-solid fa-ban" style="font-size:0.65rem; margin-right:0.25rem;"></i>No</span>`;
+            }
+
+            // UX4G DS Pill
+            const ux4gDsTd = document.createElement('td');
+            ux4gDsTd.style.textAlign = 'center';
+            const dsYes = row['UX4G Design System (Yes/No)'] === 'Yes';
+            ux4gDsTd.innerHTML = `<span class="status-pill ${dsYes ? 'yes' : 'no'}">
+                <i class="fa-solid ${dsYes ? 'fa-check' : 'fa-xmark'}"></i> ${row['UX4G Design System (Yes/No)']}
+            </span>`;
+
+            // UX4G Accessibility Pill
+            const ux4gAccTd = document.createElement('td');
+            ux4gAccTd.style.textAlign = 'center';
+            const accYes = row['UX4G Accessibility CDN (Yes/No)'] === 'Yes';
+            ux4gAccTd.innerHTML = `<span class="status-pill ${accYes ? 'yes' : 'no'}">
+                <i class="fa-solid ${accYes ? 'fa-check' : 'fa-xmark'}"></i> ${row['UX4G Accessibility CDN (Yes/No)']}
+            </span>`;
+
+            // Confidence Badge
+            const confTd = document.createElement('td');
+            confTd.style.textAlign = 'center';
+            const conf = (row.Confidence || 'N/A').toLowerCase();
+            const confClass = conf === 'high' ? 'high' : conf === 'medium' ? 'medium' : conf === 'low' ? 'low' : 'na';
+            confTd.innerHTML = `<span class="confidence-badge ${confClass}">
+                <i class="fa-solid fa-shield-halved"></i> ${escapeHtml(row.Confidence)}
+            </span>`;
+
+            // Evidence Button
+            const evTd = document.createElement('td');
+            evTd.style.textAlign = 'center';
+            evTd.innerHTML = `<button class="evidence-btn" onclick="openEvidenceModal(${index})">
+                <i class="fa-solid fa-magnifying-glass"></i> View Details
+            </button>`;
+
+            tr.appendChild(websiteTd);
+            tr.appendChild(fwTd);
+            tr.appendChild(dsTd);
+            tr.appendChild(ux4gDsTd);
+            tr.appendChild(ux4gAccTd);
+            tr.appendChild(confTd);
+            tr.appendChild(evTd);
+
+            tableBody.appendChild(tr);
+        });
+    }
+
+    // Helper: Escape HTML
+    function escapeHtml(text) {
+        if (!text) return '';
+        return text.replace(/[&<>"']/g, function(m) {
+            return {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            }[m];
+        });
+    }
+
+    // Filter & Sort Logic
+    function applyFilters() {
+        const query = searchInput.value.toLowerCase().trim();
+        const dsVal = filterUx4gDs.value;
+        const accVal = filterUx4gAcc.value;
+        const confVal = filterConfidence.value;
+
+        filteredData = reportData.filter(item => {
+            // Search Query
+            const matchesSearch = !query || 
+                item.Website.toLowerCase().includes(query) ||
+                item.URL.toLowerCase().includes(query) ||
+                (item['CSS Framework(s)'] || '').toLowerCase().includes(query) ||
+                (item['Design System(s) Used'] || '').toLowerCase().includes(query) ||
+                (item.Evidence || '').toLowerCase().includes(query);
+
+            // Filter Dropdowns
+            const matchesDs = dsVal === 'all' || item['UX4G Design System (Yes/No)'] === dsVal;
+            const matchesAcc = accVal === 'all' || item['UX4G Accessibility CDN (Yes/No)'] === accVal;
+            const matchesConf = confVal === 'all' || item.Confidence === confVal;
+
+            return matchesSearch && matchesDs && matchesAcc && matchesConf;
+        });
+
+        // Apply Sorting
+        filteredData.sort((a, b) => {
+            let valA = (a[sortColumn] || '').toString().toLowerCase();
+            let valB = (b[sortColumn] || '').toString().toLowerCase();
+
+            if (valA < valB) return sortDirection === 'asc' ? -1 : 1;
+            if (valA > valB) return sortDirection === 'asc' ? 1 : -1;
+            return 0;
+        });
+
+        renderTable();
+    }
+
+    // Table Header Click Sort
+    document.querySelectorAll('th[data-sort]').forEach(th => {
+        th.addEventListener('click', () => {
+            const col = th.getAttribute('data-sort');
+            if (sortColumn === col) {
+                sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+            } else {
+                sortColumn = col;
+                sortDirection = 'asc';
+            }
+
+            // Update UI sort headers
+            document.querySelectorAll('th').forEach(t => {
+                t.classList.remove('active-sort');
+                const icon = t.querySelector('.sort-icon');
+                if (icon) icon.className = 'fa-solid fa-sort sort-icon';
+            });
+
+            th.classList.add('active-sort');
+            const activeIcon = th.querySelector('.sort-icon');
+            if (activeIcon) {
+                activeIcon.className = `fa-solid fa-sort-${sortDirection === 'asc' ? 'up' : 'down'} sort-icon`;
+            }
+
+            applyFilters();
+        });
+    });
+
+    // Evidence Modal Logic
+    function openEvidenceModal(index) {
+        const record = filteredData[index];
+        if (!record) return;
+
+        modalPortalTitle.innerText = `${record.Website} - Evidence Breakdown`;
+        
+        // Format evidence string nicely
+        let formattedEvidence = record.Evidence;
+        if (formattedEvidence.includes(' | ')) {
+            formattedEvidence = formattedEvidence.split(' | ').join('\n\n');
+        }
+
+        modalEvidenceContent.innerText = formattedEvidence;
+        modalOverlay.classList.add('active');
+    }
+
+    modalCloseBtn.addEventListener('click', () => {
+        modalOverlay.classList.remove('active');
+    });
+
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            modalOverlay.classList.remove('active');
+        }
+    });
+
+    // Dark / Light Theme Toggle
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        themeToggleBtn.innerHTML = newTheme === 'light' 
+            ? `<i class="fa-solid fa-sun"></i> Light Mode` 
+            : `<i class="fa-solid fa-moon"></i> Dark Mode`;
+    });
+
+    // Export CSV
+    exportCsvBtn.addEventListener('click', () => {
+        if (filteredData.length === 0) return;
+
+        const headers = ["Website", "URL", "CSS Framework(s)", "Design System/UI Library Used", "UX4G Design System (Yes/No)", "UX4G Accessibility CDN (Yes/No)", "Confidence", "Evidence"];
+        let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n";
+
+        filteredData.forEach(row => {
+            const values = headers.map(h => {
+                // Map display header to actual data key
+                const key = h === "Design System/UI Library Used" ? "Design System(s) Used" : h;
+                const val = (row[key] || '').replace(/"/g, '""');
+                return `"${val}"`;
+            });
+            csvContent += values.join(",") + "\n";
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `Design_System_Report_Export.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+
+    // Event Listeners
+    searchInput.addEventListener('input', applyFilters);
+    filterUx4gDs.addEventListener('change', applyFilters);
+    filterUx4gAcc.addEventListener('change', applyFilters);
+    filterConfidence.addEventListener('change', applyFilters);
+
+    // Initial Load
+    updateStats();
+    applyFilters();
+</script>
+
+</body>
+</html>

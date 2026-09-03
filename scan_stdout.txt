@@ -1,0 +1,25 @@
+========================================================================
+  UX4G Design System & CSS Framework Detector  (Python 3.12+)
+========================================================================
+[*] Input source : government_ux4g_website_urls.md
+[+] Loaded 59 entries
+
+[*] Crawling with 8 concurrent workers...
+
+========================================================================
+  Generating Reports
+========================================================================
+[+] CSV   -> C:\Users\Nitesh Yadav\Downloads\Ux4g\Check-Design-report\reports\Design_System_Report.csv
+[+] JSON  -> C:\Users\Nitesh Yadav\Downloads\Ux4g\Check-Design-report\reports\Design_System_Report.json
+[+] Excel -> C:\Users\Nitesh Yadav\Downloads\Ux4g\Check-Design-report\reports\Design_System_Report.xlsx
+[+] HTML  -> C:\Users\Nitesh Yadav\Downloads\Ux4g\Check-Design-report\index.html
+
+------------------------------------------------------------------------
+  Total portals analysed      : 59
+  UX4G Design System (Yes)    : 10  (16.9%)
+  UX4G Accessibility CDN (Yes): 18  (30.5%)
+  High Confidence results     : 35
+  Errors / unreachable        : 4
+------------------------------------------------------------------------
+  Scan complete!
+

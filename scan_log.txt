@@ -1,0 +1,72 @@
+13:56:32 [INFO] root: Scanning [1] DigiLocker \u2192 https://www.digilocker.gov.in/
+13:56:32 [INFO] root: Scanning [2] Entity Locker \u2192 https://entity.digilocker.gov.in/
+13:56:32 [INFO] root: Scanning [3] API Setu \u2192 https://apisetu.gov.in/
+13:56:32 [INFO] root: Scanning [4] OpenForge \u2192 https://openforge.gov.in/
+13:56:32 [INFO] root: Scanning [5] UMANG \u2192 https://web.umang.gov.in/
+13:56:32 [INFO] root: Scanning [6] myScheme \u2192 https://www.myscheme.gov.in/
+13:56:32 [INFO] root: Scanning [7] Meri Pehchaan \u2192 https://meripehchaan.gov.in/
+13:56:32 [INFO] root: Scanning [8] UPSC \u2192 https://www.upsc.gov.in/
+13:56:33 [INFO] root: Scanning [9] PAIMANA \u2192 https://paimana-proj.mospi.gov.in/
+13:56:33 [INFO] root: Scanning [11] NSWS \u2192 https://www.nsws.gov.in/
+13:56:33 [INFO] root: Scanning [12] LBSNAA \u2192 https://www.lbsnaa.gov.in/
+13:56:34 [INFO] root: Scanning [13] DPE \u2192 https://www.dpe.gov.in/
+13:56:34 [INFO] root: Scanning [14] ITPO – Bharat Mandapam \u2192 https://www.itpo.gov.in/
+13:56:35 [INFO] root: Scanning [15] IPA \u2192 https://www.ipa.org.in/
+13:56:35 [INFO] root: Scanning [16] BRICS (India 2026 Digital Platform) \u2192 https://www.brics2026.gov.in/
+13:56:35 [INFO] root: Scanning [17] Portal Consolidation – Social Justice \u2192 https://www.dosje.gov.in/
+13:56:36 [INFO] root: Scanning [18] IEPFA \u2192 https://www.iepf.gov.in/content/iepfa/global/master/Home/Home.html
+13:56:36 [INFO] root: Scanning [19] Gaming Portal (Online Gaming Authority) \u2192 https://www.meity.gov.in/
+13:56:36 [INFO] Crawler: Requests returned status 403 for https://www.iepf.gov.in/content/iepfa/global/master/Home/Home.html. Attempting Playwright fallback...
+13:56:36 [INFO] root: Scanning [21] MOTA / Survey App \u2192 https://tribal.gov.in/
+13:56:36 [INFO] root: Scanning [22] Textile (TSRS) \u2192 https://txcindia-stats.gov.in/
+13:56:37 [INFO] root: Scanning [23] NDMA \u2192 https://ndma.gov.in/
+13:56:37 [INFO] root: Scanning [24] UPMS \u2192 https://upms.meity.gov.in/
+13:56:37 [INFO] root: Scanning [25] HLC Sameeksha \u2192 https://hlc-sameeksha.niti.gov.in/
+13:56:38 [INFO] root: Scanning [26] NGO Darpan \u2192 https://ngodarpan.gov.in/
+13:56:39 [INFO] root: Scanning [27] Niti for States – NFS \u2192 https://www.nitiforstates.gov.in/
+13:56:39 [INFO] root: Scanning [28] Skill India Digital Hub \u2192 https://www.skillindiadigital.gov.in/
+13:56:39 [INFO] root: Scanning [29] IFSCA \u2192 https://ifsca.gov.in/
+13:56:39 [INFO] root: Scanning [30] PARIVESH 3.0 \u2192 https://parivesh.nic.in/
+13:56:40 [INFO] root: Scanning [31] RR Generator – DoPT \u2192 https://rrgen.rframs.dopt.gov.in/
+13:56:40 [INFO] Crawler: Requests failed for https://rrgen.rframs.dopt.gov.in/ (HTTPSConnectionPool(host='rrgen.rframs.dopt.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='rrgen.rframs.dopt.gov.in', port=443): Failed to resolve 'rrgen.rframs.dopt.gov.in' ([Errno 11001] getaddrinfo failed)"))). Attempting Playwright fallback...
+13:56:40 [INFO] root: Scanning [32] GovAI Platform \u2192 https://indiaai.gov.in/
+13:56:41 [INFO] root: Scanning [34] Gov.in Appstore \u2192 https://apps.gov.in/
+13:56:43 [INFO] root: Scanning [35] UX4G \u2192 https://www.ux4g.gov.in/
+13:56:44 [INFO] root: Scanning [36] MNRE GHCI \u2192 https://mnre.gov.in/
+13:56:44 [INFO] root: Scanning [37] PM SETU \u2192 https://pm-setu.skillindiadigital.gov.in/
+13:56:44 [INFO] root: Scanning [38] NCSTGram \u2192 https://ncstgrams.gov.in/
+13:56:46 [INFO] root: Scanning [39] IN-SPACe \u2192 https://www.inspace.gov.in/
+13:56:46 [INFO] root: Scanning [40] NMC-NMR \u2192 https://nmr-nmc.abdm.gov.in/nmr/v3
+13:56:46 [INFO] root: Scanning [41] Delhi Police \u2192 https://delhipolice.gov.in/
+13:56:46 [INFO] root: Scanning [42] Election Commission of India – IIDEM \u2192 https://iidem.igotkarmayogi.gov.in/
+13:56:47 [INFO] root: Scanning [43] Digital Sports Ecosystem (SAI) \u2192 https://sportsauthorityofindia.gov.in/
+13:56:47 [INFO] Crawler: Requests failed for https://iidem.igotkarmayogi.gov.in/ (HTTPSConnectionPool(host='iidem.igotkarmayogi.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='iidem.igotkarmayogi.gov.in', port=443): Failed to resolve 'iidem.igotkarmayogi.gov.in' ([Errno 11001] getaddrinfo failed)"))). Attempting Playwright fallback...
+13:56:47 [INFO] root: Scanning [44] ABC / NAD \u2192 https://www.abc.gov.in/
+13:56:47 [INFO] root: Scanning [45] DIKSHA \u2192 https://diksha.gov.in/
+13:56:48 [INFO] root: Scanning [46] Poshan Tracker \u2192 https://www.poshantracker.in/
+13:56:48 [INFO] root: Scanning [47] Poshan \u2192 https://ptbeta.dl6.in/
+13:56:48 [INFO] root: Scanning [47] Kisan Sarathi 2.0 \u2192 https://kisansarathi.in/
+13:56:49 [INFO] root: Scanning [48] MANAS \u2192 https://www.manas.gov.in/
+13:56:49 [INFO] Crawler: Requests failed for https://www.manas.gov.in/ (HTTPSConnectionPool(host='www.manas.gov.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='www.manas.gov.in', port=443): Failed to resolve 'www.manas.gov.in' ([Errno 11001] getaddrinfo failed)"))). Attempting Playwright fallback...
+13:56:49 [INFO] root: Scanning [49] eSaras \u2192 https://www.esaras.in/
+13:56:49 [INFO] root: Scanning [50] Indiahandmade \u2192 https://www.indiahandmade.com/
+13:56:49 [INFO] root: Scanning [51] My Bharat \u2192 https://mybharat.gov.in/
+13:56:50 [INFO] root: Scanning [52] LoKOS \u2192 https://lokos.dord.gov.in/
+13:56:51 [INFO] root: Scanning [53] NHAI \u2192 https://nhai.gov.in/
+13:56:51 [INFO] root: Scanning [54] GSI \u2192 https://www.gsi.gov.in/home/
+13:56:52 [INFO] root: Scanning [55] Visvesvaraya PhD Scheme \u2192 https://phd.dic.gov.in/
+13:56:52 [INFO] root: Scanning [56] NITI Aayog \u2192 https://www.niti.gov.in/
+13:56:53 [INFO] root: Scanning [57] India AI \u2192 https://indiaai.gov.in/
+13:56:53 [INFO] root: Scanning [58] DPDP Digital Office \u2192 https://www.meity.gov.in/data-protection-framework
+13:56:53 [INFO] root: Scanning [59] NCW \u2192 https://www.ncw.gov.in/
+13:56:54 [INFO] Crawler: Requests failed for https://tribal.gov.in/ (HTTPSConnectionPool(host='tribal.gov.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='tribal.gov.in', port=443) at 0x245c7ad69d0>, 'Connection to tribal.gov.in timed out. (connect timeout=18)'))). Attempting Playwright fallback...
+13:56:54 [INFO] root: Scanning [60] Vandemataram \u2192 https://www.vandemataram150.in/
+Traceback (most recent call last):
+  File "C:\Users\Nitesh Yadav\Downloads\Ux4g\Check-Design-report\main.py", line 349, in <module>
+    main()
+  File "C:\Users\Nitesh Yadav\Downloads\Ux4g\Check-Design-report\main.py", line 319, in main
+    print(f"[+] CSV   \u2192 {csv_path}")
+  File "C:\Users\Nitesh Yadav\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 10: character maps to <undefined>
