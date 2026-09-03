@@ -7,3 +7,7 @@ __pycache__/
 # Text/Log files
 *.txt
 
+# Input files
+*.xlsx
+*.pdf
+
